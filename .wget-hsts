@@ -1,0 +1,7 @@
+# HSTS 1.0 Known Hosts database for GNU Wget.
+# Edit at your own risk.
+# <hostname>	<port>	<incl. subdomains>	<created>	<max-age>
+packages.microsoft.com	0	1	1776118441	31536000
+packages.adoptium.net	0	1	1776120604	31536000
+phar.phpunit.de	0	1	1776121049	31536000
+www.postgresql.org	0	0	1776121052	31536000
