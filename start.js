@@ -1,27 +1,15 @@
-const { PassThrough } = require('stream');
-const readline = require('readline');
+const _require = require;
+globalThis.require = _require;
 
-// Fix require is not defined error in obfuscated code
-globalThis.require = require;
-
-const phoneNumber = '6283891882373';
-
-const fakeStdin = new PassThrough();
-
-process.stdin.on('data', chunk => {
-  fakeStdin.write(chunk.toString());
-});
-
-setTimeout(() => {
-  fakeStdin.write(phoneNumber + '\n');
-}, 500);
-
-const origCreate = readline.createInterface;
-readline.createInterface = function(opts) {
-  if (opts && (opts.input === process.stdin)) {
-    opts.input = fakeStdin;
-  }
-  return origCreate.call(this, opts);
-};
+const vmp = globalThis.vmp_5057d1 = globalThis.vmp_5057d1 || {};
+const neededGlobals = [
+  'require', 'module', 'exports', '__dirname', '__filename',
+  'Buffer', 'process', 'console', 'setTimeout', 'setInterval',
+  'clearTimeout', 'clearInterval', 'setImmediate', 'clearImmediate',
+  'global', 'globalThis'
+];
+for (const key of neededGlobals) {
+  if (key in globalThis) vmp[key] = globalThis[key];
+}
 
 require('./index.js');
